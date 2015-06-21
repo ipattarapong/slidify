@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Varaint Sampling Demonstrate</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Varaint Sampling Demonstrate">
+  <meta name="author" content="Pattarapong Ingsakulrunraung">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Varaint Sampling Demonstrate</h1>
+    <h2>Presentation</h2>
+    <p>Pattarapong Ingsakulrunraung<br/>Internet</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Overview</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Nowsaday we processing a huge amount of data to make a quick decision on business.</p>
+
+<p>Sometime sampling needs to be in place to perform quick analysis.</p>
+
+<p>My application demonstarte how the population and sampling size effect the expect outcome.</p>
+
+<p>This application will sample data with 2 variants (&#39;A&#39; and &#39;B&#39;) by number of population then sampling the sample data and show the percentage  of  two variants</p>
+
+<p>Application link : <a href="https://ipattarapong.shinyapps.io/assign1">https://ipattarapong.shinyapps.io/assign1</a></p>
+
+<p>Gist link:  <a href="https://gist.github.com/ipattarapong/805081b9e6c57b31d38a">https://gist.github.com/ipattarapong/805081b9e6c57b31d38a</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>How to use Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This application is re-active so the result will update if parameter changes which are</p>
+
+<ol>
+<li>probability of two variants</li>
+<li>number of population </li>
+<li>percentage of sampling data</li>
+<li>Refresh sampling data without changing parameters</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>How it work</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Sample number of population base on probability of variants </li>
+<li>Sampling data as percentage of total sample</li>
+<li>Update result interactive </li>
+<li>Display number of A and B with percentage</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Coding and Techniques</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>using reactiveValues() and observe() function to do re-active output</li>
+</ul>
+
+<pre><code>values = reactiveValues()
+Data &lt;- observe({
+      input$refresh
+      values$a &lt;- as.numeric(input$probs)
+      ...
+</code></pre>
+
+<ul>
+<li>Sample data using r sample function</li>
+</ul>
+
+<pre><code class="r">sample(c(&quot;a&quot;,&quot;b&quot;), 10,prob=c(0.7,0.3),replace=TRUE)
+</code></pre>
+
+<pre><code>##  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot;
+</code></pre>
+
+<ul>
+<li>using input$refresh inside reactive to refresh</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Summary</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>If the population size is low and the sampling rate is low the chance to get sampling data not match with raw data  is higher than when you get more population and more sampling rate.</p>
+
+<p>For example, sampling 10 % of 1000 population size may not good enough to decide the out come of 70 % of A and 30% of B.</p>
+
+<p>In some situation processing all of data is consume a lot of resouces, sampling portion of data should be one of solution. Besides, population size and sampling rate need to be reasonable to create confident result.</p>
+
+<p>For instance, sampling 10 % of 10000 data with 50 % change on both variant.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Overview'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='How to use Application'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How it work'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Coding and Techniques'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Summary'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='NA'>
+         6
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
